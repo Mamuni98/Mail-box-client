@@ -1,7 +1,16 @@
 import { Navbar, Container, Nav, Button } from "react-bootstrap";
 import classes from "./Header.module.css";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/auth";
 const Header = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const logOutHandler = () => {
+    dispatch(authActions.logOut());
+    navigate("/");
+  };
   return (
     <Navbar bg="primary" variant="dark">
       <Container>
@@ -44,7 +53,7 @@ const Header = () => {
               Sign Up
             </NavLink>
           </Nav.Item>
-          <Button variant="warning">
+          <Button variant="warning" onClick={logOutHandler}>
             Log Out
           </Button>
         </Nav>

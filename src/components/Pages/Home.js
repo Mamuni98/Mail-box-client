@@ -1,4 +1,4 @@
 const Home = () =>{
-    return <h2>This is home page...</h2>
+    return <h2>Welcome to your mail box!</h2>
 }
 export default Home;

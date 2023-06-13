@@ -1,12 +1,15 @@
 import { Card, Form, Button } from "react-bootstrap";
 import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/auth";
 import axios from "axios";
 const LogIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const emailRef = useRef();
   const passwordRef = useRef();
   const history = useNavigate();
+  const dispatch = useDispatch();
 
   const formSubmitHandler = async (event) => {
     event.preventDefault();
@@ -24,8 +27,7 @@ const LogIn = () => {
       );
 
       const token = response.data.idToken;
-      console.log(token);
-      localStorage.setItem("email", email);
+      dispatch(authActions.logIn(token));
       alert("Successfully Logged In");
       history("/home");
     } catch (err) {
