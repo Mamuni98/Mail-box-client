@@ -7,6 +7,7 @@ import "../node_modules/react-bootstrap/dist/react-bootstrap";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import { Provider } from "react-redux";
 import store from "./components/store/central-store";
+import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

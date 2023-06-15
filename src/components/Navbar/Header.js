@@ -4,9 +4,11 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authActions } from "../store/auth";
+import { useSelector } from "react-redux";
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const IsLoggedIn = useSelector((state) => state.auth.IsLoggedIn);
   const logOutHandler = () => {
     dispatch(authActions.logOut());
     navigate("/");
@@ -20,17 +22,6 @@ const Header = () => {
           Mail-Box
         </Navbar.Brand>
         <Nav className={classes.list} style={{ marginInline: "auto" }}>
-          <Nav.Item>
-            <NavLink
-              to="/home"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-              end
-            >
-              Home
-            </NavLink>
-          </Nav.Item>
           <Nav.Item>
             <NavLink
               to="/logIn"
@@ -53,9 +44,9 @@ const Header = () => {
               Sign Up
             </NavLink>
           </Nav.Item>
-          <Button variant="warning" onClick={logOutHandler}>
+          {IsLoggedIn && <Button variant="warning" onClick={logOutHandler}>
             Log Out
-          </Button>
+          </Button>}
         </Nav>
       </Container>
     </Navbar>

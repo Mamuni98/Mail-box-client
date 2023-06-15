@@ -42,10 +42,10 @@ const SignUp = () => {
   return (
     <Card style={{ width: "28rem", marginTop: "3rem" }} className="mx-auto">
       <Card.Body>
-        <Card.Title className="text-center text-primary mb-4">
+        <div className="text-center text-primary mb-4">
           <h3>SIGN UP</h3>
-        </Card.Title>
-        <Card.Text>
+        </div>
+        <div>
           <Form onSubmit={formSubmitHandler}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -74,17 +74,17 @@ const SignUp = () => {
                 ref={confirmRef}
               />
             </Form.Group>
-            <div className="text-center">
+            <div className="text-center mb-3">
               {!isLoading ? (
                 <Button variant="primary" type="submit">
                   Sign Up
                 </Button>
               ) : (
-                <h6 className="text-primary">Sending request...</h6>
+                <h6 className="text-primary">Signing In...</h6>
               )}
             </div>
           </Form>
-        </Card.Text>
+        </div>
         <h6 className="text-center">
           Already have an account? <Link to="/logIn">Go to Log In</Link>
         </h6>
