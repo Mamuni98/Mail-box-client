@@ -7,6 +7,14 @@ import classes from "./SideBar.module.css";
 import { useSelector } from "react-redux";
 const SideBar = () => {
   const IsLoggedIn = useSelector((state) => state.auth.IsLoggedIn);
+  const inboxMails = useSelector((state) => state.inboxMail.inboxMails);
+  let count = 0;
+  for(let key in inboxMails){
+    if(inboxMails[key].read === false){
+      count = count+1;
+    }
+  }
+  console.log(count);
   return (
     <div
       style={{
@@ -32,7 +40,7 @@ const SideBar = () => {
           end
         >
           <h5 className="mb-3">
-            <BsFillEnvelopeFill/> Inbox
+            <BsFillEnvelopeFill/> Inbox  {count}
           </h5>
         </NavLink>}
         {IsLoggedIn && <NavLink

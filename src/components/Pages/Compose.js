@@ -37,6 +37,7 @@ const Compose = () => {
       mail: userMail,
       title: title,
       body: text,
+      read: false,
     };
     if (userMail.length > 0 && receiverMail.length > 0) {
       dispatch(inboxMailData(receiverMail, inboxData));

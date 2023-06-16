@@ -17,6 +17,7 @@ const Inbox = () => {
                   mail={item.mail}
                   title={item.title}
                   body={item.body}
+                  read = {item.read}
                 />
               );
             })}

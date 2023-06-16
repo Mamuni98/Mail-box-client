@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { receiveSentMailData } from "./components/store/sentMail-thunks";
 import { receiveInboxData } from "./components/store/inboxMail-thunks";
 import Inbox from "./components/Pages/Inbox";
+import MailRead from "./components/Pages/MailRead";
 function App() {
   const IsLoggedIn = useSelector((state) => state.auth.IsLoggedIn);
   const dispatch = useDispatch();
@@ -40,6 +41,10 @@ function App() {
         <Route
           path="/inbox"
           element={IsLoggedIn ? <Inbox /> : <Navigate replace to="/" />}
+        />
+        <Route
+          path="/inbox/:mailId"
+          element={IsLoggedIn ? <MailRead/> : <Navigate replace to="/" />}
         />
         <Route
           path="/sentBox"
