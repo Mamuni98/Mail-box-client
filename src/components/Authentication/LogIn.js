@@ -29,7 +29,8 @@ const LogIn = () => {
       const token = response.data.idToken;
       dispatch(authActions.logIn(token));
       alert("Successfully Logged In");
-      history("/home");
+      localStorage.setItem("email", email);
+      history("/compose");
     } catch (err) {
       const alertmsg = err.response.data.error.message;
       alert(alertmsg);

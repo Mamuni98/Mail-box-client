@@ -1,0 +1,8 @@
+.wrapper {
+  padding: 0.7rem;
+  border: 1px solid grey;
+}
+.editor {
+  background-color: rgb(244, 240, 240);
+  padding: 0.7rem;
+}
