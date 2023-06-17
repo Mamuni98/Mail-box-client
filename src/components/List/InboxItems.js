@@ -5,6 +5,7 @@ import { updateInboxMailData } from "../store/inboxMail-thunks";
 import { BsDot } from "react-icons/bs";
 import { Button } from "react-bootstrap";
 import { deleteInboxMailData } from "../store/inboxMail-thunks";
+import { recycleBinActions } from "../store/recycle-bin";
 
 const InboxItems = (props) => {
   const dispatch = useDispatch();
@@ -21,23 +22,32 @@ const InboxItems = (props) => {
     dispatch(updateInboxMailData(props.id, updatedMail));
   };
   const deleteMailHandler = () => {
+    const binMail = {
+      id: props.id,
+      title: props.title,
+      mail: props.mail,
+      body: props.body,
+    };
     dispatch(inboxMailActions.deleteInboxMails(props.id));
     dispatch(deleteInboxMailData(props.id));
-  }
+    dispatch(recycleBinActions.addInBin(binMail));
+  };
   return (
     <li style={{ borderBottom: "1px solid grey", padding: "0.5rem" }}>
       <div className="d-flex flex-row justify-content-between">
         <div className="d-flex">
-        {props.read === false ? <BsDot color="blue" size={38}/> : <BsDot color="white" />}
-        <Link
-          to={`/inbox/${props.id}`}
-          style={{ textDecoration: "none", color: "black" }}
-        >
-          <h5 onClick={readMailHandler}>{props.title}</h5>
-        </Link>
+          {!props.read && <BsDot color="blue" size={38} />}
+          <Link
+            to={`/inbox/${props.id}`}
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <h5 onClick={readMailHandler}>{props.title}</h5>
+          </Link>
         </div>
         <p>From: {props.mail}</p>
-        <Button variant="primary" onClick={deleteMailHandler}>Delete</Button>
+        <Button variant="primary" onClick={deleteMailHandler}>
+          Delete
+        </Button>
       </div>
     </li>
   );

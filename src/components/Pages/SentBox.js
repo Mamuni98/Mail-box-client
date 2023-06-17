@@ -7,12 +7,7 @@ const SentBox = () => {
   const sentMailLists = useSelector((state) => state.sentMail.sentMails);
   const changed = useSelector((state) => state.sentMail.changed);
   const dispatch = useDispatch();
-  // let sentMails;
-  // if (sentMailLists === null || sentMailLists === undefined) {
-  //   sentMails = [];
-  // } else {
-  //   sentMails = sentMailLists;
-  // }
+  
   useEffect(() => {
     console.log(changed);
     if (changed) {

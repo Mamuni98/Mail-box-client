@@ -12,21 +12,30 @@ import { receiveInboxData } from "./components/store/inboxMail-thunks";
 import Inbox from "./components/Pages/Inbox";
 import MailRead from "./components/Pages/MailRead";
 import SentMailRead from "./components/Pages/SentMailRead";
+import RecycleBin from "./components/Pages/RecycleBin";
+import { receiveBinData } from "./components/store/recycleBin-thunks";
 function App() {
   const IsLoggedIn = useSelector((state) => state.auth.IsLoggedIn);
   const dispatch = useDispatch();
   useEffect(() => {
     if (IsLoggedIn) {
-       setInterval(() => {
-        console.log("inbox");
-        dispatch(receiveInboxData());
-      }, 5000);
+      console.log("inbox");
+      dispatch(receiveInboxData());
     }
   }, [IsLoggedIn, dispatch]);
 
   useEffect(() => {
+    if (IsLoggedIn) {
     console.log("sent");
     dispatch(receiveSentMailData());
+    }
+  }, [IsLoggedIn, dispatch]);
+
+  useEffect(() => {
+    if (IsLoggedIn) {
+    console.log("recycle bin");
+    dispatch(receiveBinData());
+    }
   }, [IsLoggedIn, dispatch]);
 
   return (
@@ -57,6 +66,10 @@ function App() {
         <Route
           path="/sentBox/:mailId"
           element={IsLoggedIn ? <SentMailRead /> : <Navigate replace to="/" />}
+        />
+        <Route
+          path="/recycleBin"
+          element={IsLoggedIn ? <RecycleBin /> : <Navigate replace to="/" />}
         />
         <Route path="*" element={<p>Path not resolved</p>} />
       </Routes>

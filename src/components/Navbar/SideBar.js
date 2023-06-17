@@ -52,9 +52,15 @@ const SideBar = () => {
             <BsFillSendFill /> Sent
           </h5>
         </NavLink>}
+        {IsLoggedIn && <NavLink
+          to="/recycleBin"
+          className={({ isActive }) => (isActive ? classes.active : undefined)}
+          end
+        >
         <h5>
           <FaTrash size={18} /> Bin
         </h5>
+        </NavLink>}
       </div>
     </div>
   );

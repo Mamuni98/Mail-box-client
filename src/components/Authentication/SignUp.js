@@ -1,43 +1,28 @@
 import { Card, Form, Button } from "react-bootstrap";
-import { useRef, useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
+import useHttp from "../../customHooks/use-authhttp";
+
 const SignUp = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, authPostRequest } = useHttp();
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmRef = useRef();
-  const history = useNavigate();
+
   const formSubmitHandler = async (event) => {
     event.preventDefault();
-    setIsLoading(true);
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const confirm = confirmRef.current.value;
-    if (email.length > 0 && password.length > 0 && password === confirm) {
-      try {
-        const response = await axios.post(
-          "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB_8f1cHLxMnbJtxEn5un83iu0J4hM-2d8",
-          {
-            email: email,
-            password: password,
-            returnSecureToken: true,
-          }
-        );
-        if (response) {
-          alert("Successfully Signed Up");
-        }
-        history("/logIn");
-      } catch (err) {
-        const alertmsg = err.response.data.error.message;
-        alert(alertmsg);
-      }
-      setIsLoading(false);
-      event.target.reset();
-    } else {
-      alert("Invalid input. Please check all the input fields again.");
-      setIsLoading(false);
-    }
+    const body = {
+      email: email,
+      password: password,
+      returnSecureToken: true,
+    };
+    const url =
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB_8f1cHLxMnbJtxEn5un83iu0J4hM-2d8";
+    authPostRequest(url, body, confirm);
+    event.target.reset();
   };
   return (
     <Card style={{ width: "28rem", marginTop: "3rem" }} className="mx-auto">
