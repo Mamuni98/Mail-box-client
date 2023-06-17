@@ -11,6 +11,7 @@ import { receiveSentMailData } from "./components/store/sentMail-thunks";
 import { receiveInboxData } from "./components/store/inboxMail-thunks";
 import Inbox from "./components/Pages/Inbox";
 import MailRead from "./components/Pages/MailRead";
+import SentMailRead from "./components/Pages/SentMailRead";
 function App() {
   const IsLoggedIn = useSelector((state) => state.auth.IsLoggedIn);
   const dispatch = useDispatch();
@@ -49,6 +50,10 @@ function App() {
         <Route
           path="/sentBox"
           element={IsLoggedIn ? <SentBox /> : <Navigate replace to="/" />}
+        />
+         <Route
+          path="/sentBox/:mailId"
+          element={IsLoggedIn ? <SentMailRead /> : <Navigate replace to="/" />}
         />
         <Route path="*" element={<p>Path not resolved</p>} />
       </Routes>

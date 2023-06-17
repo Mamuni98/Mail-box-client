@@ -34,6 +34,7 @@ const SentBox = () => {
               mail={item.mail}
               title={item.title}
               body={item.body}
+              read={propTypes.read}
             />
           );
         })}

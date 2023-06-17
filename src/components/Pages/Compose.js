@@ -27,6 +27,7 @@ const Compose = () => {
       mail: receiverMail,
       title: title,
       body: text,
+      read: false,
     };
     if (receiverMail.length > 0) {
       console.log(receiverMail);
