@@ -52,17 +52,35 @@ export const updateInboxMailData = (id, mail) => {
     const usermail = localStorage.getItem("email");
     if (usermail) {
       const user = usermail.replace("@", "").replace(".", "");
-    try {
-      const response = await axios.put(
-        `https://mail-box-6b06b-default-rtdb.firebaseio.com/${user}-inbox/${id}.json`,
-        mail
-      );
-      if (response) {
-        console.log(response);
+      try {
+        const response = await axios.put(
+          `https://mail-box-6b06b-default-rtdb.firebaseio.com/${user}-inbox/${id}.json`,
+          mail
+        );
+        if (response) {
+          console.log(response);
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
-  }
+  };
+};
+export const deleteInboxMailData = (id) => {
+  return async () => {
+    const usermail = localStorage.getItem("email");
+    if (usermail) {
+      const user = usermail.replace("@", "").replace(".", "");
+      try {
+        const response = await axios.delete(
+          `https://mail-box-6b06b-default-rtdb.firebaseio.com/${user}-inbox/${id}.json`
+        );
+        if (response) {
+          console.log(response);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 };

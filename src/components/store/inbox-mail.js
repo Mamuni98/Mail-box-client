@@ -26,6 +26,12 @@ const inboxMailSlice = createSlice({
       };
       state.inboxMails[existingItemIndex] = updatedItem;
     },
+    deleteInboxMails(state, action) {
+      const filteredMails = state.inboxMails.filter(
+        (item) => item.id !== action.payload
+      );
+      state.inboxMails = filteredMails;
+    },
   },
 });
 export const inboxMailActions = inboxMailSlice.actions;
