@@ -16,15 +16,18 @@ function App() {
   const IsLoggedIn = useSelector((state) => state.auth.IsLoggedIn);
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("inbox");
-    dispatch(receiveInboxData());
+    if (IsLoggedIn) {
+       setInterval(() => {
+        console.log("inbox");
+        dispatch(receiveInboxData());
+      }, 5000);
+    }
   }, [IsLoggedIn, dispatch]);
 
   useEffect(() => {
     console.log("sent");
     dispatch(receiveSentMailData());
   }, [IsLoggedIn, dispatch]);
-
 
   return (
     <>
@@ -45,13 +48,13 @@ function App() {
         />
         <Route
           path="/inbox/:mailId"
-          element={IsLoggedIn ? <MailRead/> : <Navigate replace to="/" />}
+          element={IsLoggedIn ? <MailRead /> : <Navigate replace to="/" />}
         />
         <Route
           path="/sentBox"
           element={IsLoggedIn ? <SentBox /> : <Navigate replace to="/" />}
         />
-         <Route
+        <Route
           path="/sentBox/:mailId"
           element={IsLoggedIn ? <SentMailRead /> : <Navigate replace to="/" />}
         />
