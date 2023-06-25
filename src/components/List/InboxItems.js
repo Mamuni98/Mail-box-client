@@ -17,7 +17,12 @@ const InboxItems = (props) => {
       body: props.body,
       read: true,
     };
-    dispatch(inboxMailActions.readMail(props));
+    const readMail = {
+      ...props,
+      ToFrom: "From",
+    };
+
+    dispatch(inboxMailActions.readMail(readMail));
     dispatch(inboxMailActions.updateInboxMails(props.id));
     dispatch(updateInboxMailData(props.id, updatedMail));
   };
@@ -44,10 +49,12 @@ const InboxItems = (props) => {
             <h5 onClick={readMailHandler}>{props.title}</h5>
           </Link>
         </div>
-        <p>From: {props.mail}</p>
-        <Button variant="primary" onClick={deleteMailHandler}>
-          Delete
-        </Button>
+        <div className="d-flex">
+          <p className="mx-2">From: {props.mail}</p>
+          <Button variant="primary" onClick={deleteMailHandler}>
+            Delete
+          </Button>
+        </div>
       </div>
     </li>
   );

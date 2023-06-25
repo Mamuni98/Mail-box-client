@@ -53,13 +53,10 @@ export const updateInboxMailData = (id, mail) => {
     if (usermail) {
       const user = usermail.replace("@", "").replace(".", "");
       try {
-        const response = await axios.put(
+        await axios.put(
           `https://mail-box-6b06b-default-rtdb.firebaseio.com/${user}-inbox/${id}.json`,
           mail
         );
-        if (response) {
-          console.log(response);
-        }
       } catch (error) {
         console.log(error);
       }
@@ -72,12 +69,10 @@ export const deleteInboxMailData = (id) => {
     if (usermail) {
       const user = usermail.replace("@", "").replace(".", "");
       try {
-        const response = await axios.delete(
+       await axios.delete(
           `https://mail-box-6b06b-default-rtdb.firebaseio.com/${user}-inbox/${id}.json`
         );
-        if (response) {
-          console.log(response);
-        }
+       
       } catch (error) {
         console.log(error);
       }

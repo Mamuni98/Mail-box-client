@@ -6,10 +6,8 @@ const SentItems = (props) => {
   const dispatch = useDispatch();
   const updateReadMailHandler = () => {
     const readMail = {
-      id: props.id,
-      mail: props.mail,
-      title: props.title,
-      body: props.body,
+      ...props,
+      ToFrom: "To",
     };
     dispatch(sentMailActions.updateReadMail(readMail));
   };
@@ -17,11 +15,7 @@ const SentItems = (props) => {
     <li style={{ borderBottom: "1px solid grey", padding: "0.5rem" }}>
       <div className="d-flex flex-wrap justify-content-between">
         <div className="d-flex">
-          {props.read === false ? (
-            <BsDot color="blue" size={38} />
-          ) : (
-            <BsDot color="white" />
-          )}
+          {!props.read && <BsDot color="blue" size={38} />}
           <Link
             to={`/sentBox/${props.id}`}
             style={{ textDecoration: "none", color: "black" }}

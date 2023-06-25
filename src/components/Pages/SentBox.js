@@ -9,7 +9,7 @@ const SentBox = () => {
   const dispatch = useDispatch();
   
   useEffect(() => {
-    console.log(changed);
+    //console.log(changed);
     if (changed) {
       dispatch(sentMailData(sentMailLists));
     }

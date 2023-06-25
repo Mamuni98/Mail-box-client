@@ -11,7 +11,6 @@ import { receiveSentMailData } from "./components/store/sentMail-thunks";
 import { receiveInboxData } from "./components/store/inboxMail-thunks";
 import Inbox from "./components/Pages/Inbox";
 import MailRead from "./components/Pages/MailRead";
-import SentMailRead from "./components/Pages/SentMailRead";
 import RecycleBin from "./components/Pages/RecycleBin";
 import { receiveBinData } from "./components/store/recycleBin-thunks";
 function App() {
@@ -19,21 +18,21 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (IsLoggedIn) {
-      console.log("inbox");
+      //console.log("inbox");
       dispatch(receiveInboxData());
     }
   }, [IsLoggedIn, dispatch]);
 
   useEffect(() => {
     if (IsLoggedIn) {
-    console.log("sent");
+    //console.log("sent");
     dispatch(receiveSentMailData());
     }
   }, [IsLoggedIn, dispatch]);
 
   useEffect(() => {
     if (IsLoggedIn) {
-    console.log("recycle bin");
+    //console.log("recycle bin");
     dispatch(receiveBinData());
     }
   }, [IsLoggedIn, dispatch]);
@@ -49,27 +48,27 @@ function App() {
         {!IsLoggedIn && <Route path="/logIn" element={<LogIn />} />}
         <Route
           path="/compose"
-          element={IsLoggedIn ? <Compose /> : <Navigate replace to="/" />}
+          element={IsLoggedIn ? <Compose /> : <Navigate replace to="/logIn" />}
         />
         <Route
           path="/inbox"
-          element={IsLoggedIn ? <Inbox /> : <Navigate replace to="/" />}
+          element={IsLoggedIn ? <Inbox /> : <Navigate replace to="/logIn" />}
         />
         <Route
           path="/inbox/:mailId"
-          element={IsLoggedIn ? <MailRead /> : <Navigate replace to="/" />}
+          element={IsLoggedIn ? <MailRead /> : <Navigate replace to="/logIn" />}
         />
         <Route
           path="/sentBox"
-          element={IsLoggedIn ? <SentBox /> : <Navigate replace to="/" />}
+          element={IsLoggedIn ? <SentBox /> : <Navigate replace to="/logIn" />}
         />
         <Route
           path="/sentBox/:mailId"
-          element={IsLoggedIn ? <SentMailRead /> : <Navigate replace to="/" />}
+          element={IsLoggedIn ? <MailRead /> : <Navigate replace to="/logIn" />}
         />
         <Route
           path="/recycleBin"
-          element={IsLoggedIn ? <RecycleBin /> : <Navigate replace to="/" />}
+          element={IsLoggedIn ? <RecycleBin /> : <Navigate replace to="/logIn" />}
         />
         <Route path="*" element={<p>Path not resolved</p>} />
       </Routes>

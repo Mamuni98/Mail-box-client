@@ -30,7 +30,7 @@ const Compose = () => {
       read: false,
     };
     if (receiverMail.length > 0) {
-      console.log(receiverMail);
+      //console.log(receiverMail);
       dispatch(sentMailActions.addMail(sendMailData));
     }
     const userMail = localStorage.getItem("email");

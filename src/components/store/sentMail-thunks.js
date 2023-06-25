@@ -5,7 +5,7 @@ export const sentMailData = (sentMails) => {
   return async () => {
     const usermail = localStorage.getItem("email");
     if (usermail) {
-      console.log("sending mails to sentbox");
+      //console.log("sending mails to sentbox");
       const user = usermail.replace("@", "").replace(".", "");
       try {
         await axios.put(
@@ -24,7 +24,7 @@ export const receiveSentMailData = () => {
     const usermail = localStorage.getItem("email");
     if (usermail) {
       const user = usermail.replace("@", "").replace(".", "");
-      console.log(user);
+      //console.log(user);
       try {
         const response = await axios.get(
           `https://mail-box-6b06b-default-rtdb.firebaseio.com/${user}-SentMails.json`
